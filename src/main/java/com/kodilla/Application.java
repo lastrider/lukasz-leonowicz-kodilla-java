@@ -25,6 +25,6 @@ class ChangeBinToDec {
             binNumber /= 10;
         }
 
-        System.out.println(intNumber);
+        System.out.println("Decimal number is: " + intNumber);
     }
 }
