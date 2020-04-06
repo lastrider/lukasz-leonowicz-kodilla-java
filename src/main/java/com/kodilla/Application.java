@@ -3,11 +3,11 @@ package com.kodilla;
 public class Application {
     public static void main(String[] args) {
         int binNumber = 10111000;
-        new ChangeBinToDec().swap(binNumber);
+        new BinToDec().swap(binNumber);
     }
 }
 
-class ChangeBinToDec {
+class BinToDec {
 
     public void swap(Integer binNumber) {
         int exponent = 0;
