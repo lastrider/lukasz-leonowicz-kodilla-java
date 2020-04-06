@@ -1,4 +1,4 @@
-package com.kodilla;
+package com.kodilla.ExtraTasks.BinToDec;
 
 public class Application {
     public static void main(String[] args) {
