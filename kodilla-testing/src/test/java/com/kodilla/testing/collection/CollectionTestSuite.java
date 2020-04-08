@@ -37,14 +37,14 @@ public class CollectionTestSuite {
     public void testOddNumbersExterminatorNormalList() {
         //Given
         ArrayList<Integer> list = new ArrayList<>();
-        Collections.addAll(list, new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+        Collections.addAll(list, 1, 2, 3, 4, 5, 6, 7, 8, 9);
         //When
         OddNumbersExterminator exterminator = new OddNumbersExterminator();
         ArrayList<Integer> result = exterminator.exterminate(list);
         System.out.println("Exterminated filled ArrayList: " + result);
         //Then
         ArrayList<Integer> evenList = new ArrayList<>();
-        Collections.addAll(evenList, new Integer[]{2, 4, 6, 8});
+        Collections.addAll(evenList, 2, 4, 6, 8);
         Assert.assertEquals(evenList,result);
     }
 }
