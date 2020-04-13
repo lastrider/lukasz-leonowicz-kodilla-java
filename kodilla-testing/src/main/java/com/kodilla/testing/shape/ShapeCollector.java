@@ -5,7 +5,6 @@ import java.util.List;
 
 interface Shape {
     String getShapeName();
-
     double getField();
 }
 
@@ -27,6 +26,10 @@ public class ShapeCollector {
         return false;
     }
 
+    public int listSize(){
+        return listOfShapes.size();
+    }
+
     void showFigures(ArrayList list) {
     }
 
@@ -40,12 +43,12 @@ class Square implements Shape {
     }
 
     public String getShapeName() {
-        return "Temporary name: Square";
+        return "Square";
     }
 
     public double getField() {
-        //temporary
-        return 1.0;
+        double result = sideLength*sideLength;
+        return result;
     }
 }
 
@@ -61,12 +64,13 @@ class Triangle implements Shape {
     }
 
     public String getShapeName() {
-        return "Temporary name: Triangle";
+        return "Triangle";
     }
 
     public double getField() {
-        //temporary
-        return 2.0;
+        double p = (sideLent1+sideLent2+sideLent3)/2;
+        double result = Math.sqrt(p * (p - sideLent1) * (p - sideLent2) * ((p - sideLent3)));
+        return result;
     }
 }
 
@@ -79,11 +83,11 @@ class Circle implements Shape {
     }
 
     public String getShapeName() {
-        return "Temporary name: Circle";
+        return "Circle";
     }
 
     public double getField() {
-        //temporary
-        return 3.0;
+        double result = Math.PI * radiusLength * radiusLength;
+        return result;
     }
 }

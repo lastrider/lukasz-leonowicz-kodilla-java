@@ -1,5 +1,6 @@
 package com.kodilla.testing.shape;
 
+import com.kodilla.testing.collection.CollectionTestSuite;
 import org.junit.*;
 
 public class ShapeCollectorTestSuite {
@@ -25,19 +26,19 @@ public class ShapeCollectorTestSuite {
         System.out.println("-----------------------------------------");
     }
 
-    @Test //1
+    @Test
     public void testAddFigure() {
         //Given
         Square theSquare = new Square(1);
         ShapeCollector theCollector = new ShapeCollector();
         //When
-        String result = theCollector.toString();
         theCollector.addFigure(theSquare);
+        int result = theCollector.listSize();
         //Then
-        Assert.assertNotEquals(result, theCollector);
+        Assert.assertEquals(1, result);
     }
 
-    @Test //2
+    @Test
     public void testGetFigure() {
         //Given
         Shape theSquare = new Square(1);
@@ -49,7 +50,36 @@ public class ShapeCollectorTestSuite {
         Assert.assertEquals(theSquare, result);
     }
 
-    @Test //3
+
+
+    @Test
+    public void testGetFigureIndexBellowZero(){
+        //Given
+        Shape theSquare = new Square(1);
+        ShapeCollector theCollector = new ShapeCollector();
+        //When
+        Shape result = theCollector.getFigure(-1);
+        //Then
+        Assert.assertNull(result);
+    }
+
+    @Test
+    public void testGetFigureIndexAboveListRange(){
+        //Given
+        Shape theSquare = new Square(1);
+        Shape theTriangle = new Triangle(3, 4, 5);
+        Shape theCircle = new Circle(2);
+        ShapeCollector  theCollector = new ShapeCollector();
+        //When
+        theCollector.addFigure(theCircle);
+        theCollector.addFigure(theSquare);
+        theCollector.addFigure(theTriangle);
+        Shape result = theCollector.getFigure(15);
+        //Then
+        Assert.assertNull(result);
+    }
+
+    @Test
     public void testRemoveFigureNotExisting() {
         //Given
         Shape theSquare = new Square(1);
@@ -60,18 +90,21 @@ public class ShapeCollectorTestSuite {
         Assert.assertFalse(result);
     }
 
-    @Test //4
+    @Test
     public void testRemoveFigure() {
         //Given
         Shape theSquare = new Square(1);
         ShapeCollector theCollector = new ShapeCollector();
         //When
-        boolean result = theCollector.removeFigure(theSquare);
+        theCollector.addFigure(theSquare);
+        boolean result1 = theCollector.removeFigure(theSquare);
+        int result2 = theCollector.listSize();
         //Then
-        Assert.assertFalse(result);
+        Assert.assertFalse(result1);
+        Assert.assertEquals(0,result2);
     }
 
-    @Test //5
+    @Test
     public void testGetShapeName() {
         //Given
         Shape theSquare = new Square(1);
@@ -81,13 +114,33 @@ public class ShapeCollectorTestSuite {
         Assert.assertEquals("Square", result);
     }
 
-    @Test //6
-    public void testGetShapeField() {
+    @Test
+    public void testGetSquareField() {
         //Given
-        Shape theSquare = new Square(1);
+        Shape theSquare = new Square(2);
         //When
         double result = theSquare.getField();
         //Then
-        Assert.assertEquals(1, result);
+        Assert.assertEquals(4, result);
+    }
+
+    @Test
+    public  void testGetCircleField(){
+        //Given
+        Shape theCircle = new Circle(2);
+        //When
+        double result = theCircle.getField();
+        //Then
+        Assert.assertEquals(Math.PI*4, result);
+    }
+
+    @Test
+    public void testGetTriangleField(){
+        //Given
+        Shape theTriangle = new Triangle(3, 4, 5);
+        //When
+        double result = theTriangle.getField();
+        //Then
+        Assert.assertEquals(6, result);
     }
 }
