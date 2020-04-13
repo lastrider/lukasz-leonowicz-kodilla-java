@@ -11,7 +11,7 @@ interface Shape {
 
 public class ShapeCollector {
 
-    private List<Shape> listOfShapes = new ArrayList<>();
+    private final List<Shape> listOfShapes = new ArrayList<>();
 
     public void addFigure(Shape shape) {
         listOfShapes.add(shape);
@@ -40,9 +40,11 @@ public class ShapeCollector {
         return listOfShapes.size();
     }
 
-    void showFigures(ArrayList list) {
+    void showFigures(ArrayList<Shape> list) {
+        for (Shape shape : list) {
+            System.out.println(shape);
+        }
     }
-
 }
 
 class Square implements Shape {
@@ -57,8 +59,14 @@ class Square implements Shape {
     }
 
     public double getField() {
-        double result = sideLength * sideLength;
-        return result;
+        return sideLength * sideLength;
+    }
+
+    @Override
+    public String toString() {
+        return "Square{" +
+                "sideLength=" + sideLength +
+                '}';
     }
 }
 
@@ -79,8 +87,16 @@ class Triangle implements Shape {
 
     public double getField() {
         double p = (sideLent1 + sideLent2 + sideLent3) / 2;
-        double result = Math.sqrt(p * (p - sideLent1) * (p - sideLent2) * ((p - sideLent3)));
-        return result;
+        return Math.sqrt(p * (p - sideLent1) * (p - sideLent2) * ((p - sideLent3)));
+    }
+
+    @Override
+    public String toString() {
+        return "Triangle{" +
+                "sideLent1=" + sideLent1 +
+                ", sideLent2=" + sideLent2 +
+                ", sideLent3=" + sideLent3 +
+                '}';
     }
 }
 
@@ -97,7 +113,13 @@ class Circle implements Shape {
     }
 
     public double getField() {
-        double result = Math.PI * radiusLength * radiusLength;
-        return result;
+        return Math.PI * radiusLength * radiusLength;
+    }
+
+    @Override
+    public String toString() {
+        return "Circle{" +
+                "radiusLength=" + radiusLength +
+                '}';
     }
 }
