@@ -5,6 +5,7 @@ import java.util.List;
 
 interface Shape {
     String getShapeName();
+
     double getField();
 }
 
@@ -13,20 +14,29 @@ public class ShapeCollector {
     private List<Shape> listOfShapes = new ArrayList<>();
 
     public void addFigure(Shape shape) {
-
+        listOfShapes.add(shape);
     }
 
     public Shape getFigure(int index) {
-        //temporary outcome
-        return new Square(2);
+        if (index < 0) {
+            return null;
+        } else if (index > listOfShapes.size() - 1) {
+            return null;
+        } else {
+            return listOfShapes.get(index);
+        }
     }
 
     public boolean removeFigure(Shape shape) {
-        //temporary
-        return false;
+        if (listOfShapes.contains(shape)) {
+            listOfShapes.remove(shape);
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public int listSize(){
+    public int listSize() {
         return listOfShapes.size();
     }
 
@@ -47,7 +57,7 @@ class Square implements Shape {
     }
 
     public double getField() {
-        double result = sideLength*sideLength;
+        double result = sideLength * sideLength;
         return result;
     }
 }
@@ -68,7 +78,7 @@ class Triangle implements Shape {
     }
 
     public double getField() {
-        double p = (sideLent1+sideLent2+sideLent3)/2;
+        double p = (sideLent1 + sideLent2 + sideLent3) / 2;
         double result = Math.sqrt(p * (p - sideLent1) * (p - sideLent2) * ((p - sideLent3)));
         return result;
     }
@@ -78,8 +88,8 @@ class Circle implements Shape {
 
     double radiusLength;
 
-    public Circle (double radiusLength) {
-        this.radiusLength= radiusLength;
+    public Circle(double radiusLength) {
+        this.radiusLength = radiusLength;
     }
 
     public String getShapeName() {

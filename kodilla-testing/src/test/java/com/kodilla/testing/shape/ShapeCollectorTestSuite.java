@@ -50,14 +50,13 @@ public class ShapeCollectorTestSuite {
         Assert.assertEquals(theSquare, result);
     }
 
-
-
     @Test
     public void testGetFigureIndexBellowZero(){
         //Given
         Shape theSquare = new Square(1);
         ShapeCollector theCollector = new ShapeCollector();
         //When
+        theCollector.addFigure(theSquare);
         Shape result = theCollector.getFigure(-1);
         //Then
         Assert.assertNull(result);
@@ -100,7 +99,7 @@ public class ShapeCollectorTestSuite {
         boolean result1 = theCollector.removeFigure(theSquare);
         int result2 = theCollector.listSize();
         //Then
-        Assert.assertFalse(result1);
+        Assert.assertTrue(result1);
         Assert.assertEquals(0,result2);
     }
 
@@ -121,7 +120,7 @@ public class ShapeCollectorTestSuite {
         //When
         double result = theSquare.getField();
         //Then
-        Assert.assertEquals(4, result);
+        Assert.assertEquals(4.0, result,0);
     }
 
     @Test
@@ -131,7 +130,7 @@ public class ShapeCollectorTestSuite {
         //When
         double result = theCircle.getField();
         //Then
-        Assert.assertEquals(Math.PI*4, result);
+        Assert.assertEquals(Math.PI*4, result,0);
     }
 
     @Test
@@ -141,6 +140,6 @@ public class ShapeCollectorTestSuite {
         //When
         double result = theTriangle.getField();
         //Then
-        Assert.assertEquals(6, result);
+        Assert.assertEquals(6.0, result,0);
     }
 }
