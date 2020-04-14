@@ -11,13 +11,15 @@ import static org.mockito.Mockito.when;
 
 public class ForumStatisticsTestSuite {
 
+    final double DELTA = 0.0000000001; //1e-10
+
     @Test
     public void testZeroPostCounts() {
         //Given
         ForumStatistic forumStatistic = new ForumStatistic();
         Statistics statistics = mock(Statistics.class);
         List<String> list = new ArrayList<>();
-        for (int i = 0; i <100 ; i++) {
+        for (int i = 0; i < 100; i++) {
             list.add(String.valueOf(i));
         }
         when(statistics.usersNames()).thenReturn(list);
@@ -29,9 +31,9 @@ public class ForumStatisticsTestSuite {
         double result2 = forumStatistic.getCommentsPerUsersRatio();
         double result3 = forumStatistic.getCommentsPerPostsRatio();
         //Then
-        Assert.assertEquals(0, result1, 0);
-        Assert.assertEquals(1, result2, 0);
-        Assert.assertEquals(0, result3, 0);
+        Assert.assertEquals(0, result1, DELTA);
+        Assert.assertEquals(1, result2, DELTA);
+        Assert.assertEquals(0, result3, DELTA);
     }
 
     @Test
@@ -40,7 +42,7 @@ public class ForumStatisticsTestSuite {
         ForumStatistic forumStatistic = new ForumStatistic();
         Statistics statistics = mock(Statistics.class);
         List<String> list = new ArrayList<>();
-        for (int i = 0; i <100 ; i++) {
+        for (int i = 0; i < 100; i++) {
             list.add(String.valueOf(i));
         }
         when(statistics.usersNames()).thenReturn(list);
@@ -52,9 +54,9 @@ public class ForumStatisticsTestSuite {
         double result2 = forumStatistic.getCommentsPerUsersRatio();
         double result3 = forumStatistic.getCommentsPerPostsRatio();
         //Then
-        Assert.assertEquals(10.0, result1, 0);
-        Assert.assertEquals(1.0, result2, 0);
-        Assert.assertEquals(0.1, result3, 0);
+        Assert.assertEquals(10.0, result1, DELTA);
+        Assert.assertEquals(1.0, result2, DELTA);
+        Assert.assertEquals(0.1, result3, DELTA);
     }
 
     @Test
@@ -63,7 +65,7 @@ public class ForumStatisticsTestSuite {
         ForumStatistic forumStatistic = new ForumStatistic();
         Statistics statistics = mock(Statistics.class);
         List<String> list = new ArrayList<>();
-        for (int i = 0; i <100 ; i++) {
+        for (int i = 0; i < 100; i++) {
             list.add(String.valueOf(i));
         }
         when(statistics.usersNames()).thenReturn(list);
@@ -75,9 +77,9 @@ public class ForumStatisticsTestSuite {
         double result2 = forumStatistic.getCommentsPerUsersRatio();
         double result3 = forumStatistic.getCommentsPerPostsRatio();
         //Then
-        Assert.assertEquals(1.0, result1, 0);
-        Assert.assertEquals(0.0, result2, 0);
-        Assert.assertEquals(0.0, result3, 0);
+        Assert.assertEquals(1.0, result1, DELTA);
+        Assert.assertEquals(0.0, result2, DELTA);
+        Assert.assertEquals(0.0, result3, DELTA);
     }
 
     @Test
@@ -86,7 +88,7 @@ public class ForumStatisticsTestSuite {
         ForumStatistic forumStatistic = new ForumStatistic();
         Statistics statistics = mock(Statistics.class);
         List<String> list = new ArrayList<>();
-        for (int i = 0; i <100 ; i++) {
+        for (int i = 0; i < 100; i++) {
             list.add(String.valueOf(i));
         }
         when(statistics.usersNames()).thenReturn(list);
@@ -98,9 +100,9 @@ public class ForumStatisticsTestSuite {
         double result2 = forumStatistic.getCommentsPerUsersRatio();
         double result3 = forumStatistic.getCommentsPerPostsRatio();
         //Then
-        Assert.assertEquals(10.0, result1, 0);
-        Assert.assertEquals(1.0, result2, 0);
-        Assert.assertEquals(0.1, result3, 0);
+        Assert.assertEquals(10.0, result1, DELTA);
+        Assert.assertEquals(1.0, result2, DELTA);
+        Assert.assertEquals(0.1, result3, DELTA);
     }
 
     @Test
@@ -109,7 +111,7 @@ public class ForumStatisticsTestSuite {
         ForumStatistic forumStatistic = new ForumStatistic();
         Statistics statistics = mock(Statistics.class);
         List<String> list = new ArrayList<>();
-        for (int i = 0; i <100 ; i++) {
+        for (int i = 0; i < 100; i++) {
             list.add(String.valueOf(i));
         }
         when(statistics.usersNames()).thenReturn(list);
@@ -121,9 +123,9 @@ public class ForumStatisticsTestSuite {
         double result2 = forumStatistic.getCommentsPerUsersRatio();
         double result3 = forumStatistic.getCommentsPerPostsRatio();
         //Then
-        Assert.assertEquals(1.0, result1, 0);
-        Assert.assertEquals(10.0, result2, 0);
-        Assert.assertEquals(10.0, result3, 0);
+        Assert.assertEquals(1.0, result1, DELTA);
+        Assert.assertEquals(10.0, result2, DELTA);
+        Assert.assertEquals(10.0, result3, DELTA);
     }
 
     @Test
@@ -141,9 +143,9 @@ public class ForumStatisticsTestSuite {
         double result2 = forumStatistic.getCommentsPerUsersRatio();
         double result3 = forumStatistic.getCommentsPerPostsRatio();
         //Then
-        Assert.assertEquals(0, result1, 0);
-        Assert.assertEquals(0, result2, 0);
-        Assert.assertEquals(1, result3, 0);
+        Assert.assertEquals(0, result1, DELTA);
+        Assert.assertEquals(0, result2, DELTA);
+        Assert.assertEquals(1, result3, DELTA);
     }
 
     @Test
@@ -152,7 +154,7 @@ public class ForumStatisticsTestSuite {
         ForumStatistic forumStatistic = new ForumStatistic();
         Statistics statistics = mock(Statistics.class);
         List<String> list = new ArrayList<>();
-        for (int i = 0; i <100 ; i++) {
+        for (int i = 0; i < 100; i++) {
             list.add(String.valueOf(i));
         }
         when(statistics.usersNames()).thenReturn(list);
@@ -164,8 +166,8 @@ public class ForumStatisticsTestSuite {
         double result2 = forumStatistic.getCommentsPerUsersRatio();
         double result3 = forumStatistic.getCommentsPerPostsRatio();
         //Then
-        Assert.assertEquals(1, result1, 0);
-        Assert.assertEquals(1, result2, 0);
-        Assert.assertEquals(1, result3, 0);
+        Assert.assertEquals(1, result1, DELTA);
+        Assert.assertEquals(1, result2, DELTA);
+        Assert.assertEquals(1, result3, DELTA);
     }
 }

@@ -1,7 +1,6 @@
 package com.kodilla.testing.forum.statistics;
 
 public class ForumStatistic {
-    Statistics statistics;
     private int numberOfUsers;
     private int numberOfPosts;
     private int numberOfComments;
@@ -54,7 +53,6 @@ public class ForumStatistic {
 
     public String showStatistics() {
         return "ForumStatistic{" +
-                "statistics=" + statistics +
                 ", numberOfUsers=" + numberOfUsers +
                 ", numberOfPosts=" + numberOfPosts +
                 ", numberOfComments=" + numberOfComments +
