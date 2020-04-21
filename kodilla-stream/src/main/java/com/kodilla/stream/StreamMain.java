@@ -1,28 +1,23 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
+import com.kodilla.stream.forumuser.*;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
     public static void main(String[] args) {
-        PoemBeautifier poemBeautifier = new PoemBeautifier();
+        List<ForumUser> forumUserList = new Forum().getUserList();
+        Map<Integer, ForumUser> resultMap;
 
-        System.out.println("Bellow you will find beautified text:");
-        System.out.println("Unchanged text format");
+        resultMap = forumUserList.stream()
+                .filter(forumUser -> forumUser.getSex()=='M')
+                .filter(forumUser->forumUser.getPostCount()>=1)
+                .filter(forumUser ->forumUser.getDateOfBirth().isBefore(LocalDate.now().minusYears(20)))
+                .collect(Collectors.toMap(ForumUser::getId,ForumUser->ForumUser));
 
-        poemBeautifier.beautify("Some beautified text", (text) -> text.toUpperCase());
-        poemBeautifier.beautify("Another text", text -> "// " + text + " //");
-        poemBeautifier.beautify("Different text", text -> "** " + text.toUpperCase() + " **");
-        poemBeautifier.beautify("Last changed text", text -> {
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < text.length(); i++) {
-                if (i%2==0){
-                    builder.append(text.substring(i, i + 1).toUpperCase());
-                } else {
-                    builder.append(text.substring(i, i + 1).toLowerCase());
-                }
-            }
-            return builder.toString();
-        });
-
+        resultMap.entrySet().stream().map(entry ->entry.getKey() + " " + entry.getValue()).forEach(System.out::println);
     }
 }
