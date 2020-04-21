@@ -13,6 +13,7 @@ public class ArrayOperationsTestSuite {
         double result = 226.380952380952;
         //Then
         Assert.assertEquals(result,ArrayOperations.getAverage(array),0.0000000001);
+        Assert.assertEquals(0,ArrayOperations.getAverage(new int[0]),0.0000000001);
     }
 
 }
