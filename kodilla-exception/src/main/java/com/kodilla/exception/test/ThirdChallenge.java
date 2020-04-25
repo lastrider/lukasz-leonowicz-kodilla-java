@@ -7,13 +7,14 @@ public class ThirdChallenge {
         finder.addConnection("Berlin", true);
 
         try {
-            if (finder.findFlight(flight)==true) System.out.println("Flight is possible.");
-            else System.out.println("The destination is not available.");
-
+            if (finder.findFlight(flight)) {
+                System.out.println("Flight is possible.");
+            }
+            else {
+                System.out.println("The destination is not available.");
+            }
         } catch (RouteNotFoundException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
-
-
 }

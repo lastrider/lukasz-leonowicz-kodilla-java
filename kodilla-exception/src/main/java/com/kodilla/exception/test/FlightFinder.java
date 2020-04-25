@@ -13,14 +13,12 @@ public class FlightFinder {
 
     public boolean findFlight(Flight flight) throws RouteNotFoundException {
 
-        boolean result=false;
-        try {
+        boolean result = false;
+        if (flightMap.containsKey(flight.getArrivalAirport())) {
             result = flightMap.get(flight.getArrivalAirport());
-        } catch (Exception e) {
-            throw new RouteNotFoundException();
-        } finally {
-            return result;
+        } else {
+            throw new RouteNotFoundException("The place does not exist on our database.");
         }
-
+        return result;
     }
 }
