@@ -8,21 +8,10 @@ public class BoardConfig {
 
     @Bean
     public Board getBoard() {
-        return new Board(getToDo(), getInProgress(), getDone());
+        return new Board(getTaskList(), getTaskList(), getTaskList());
     }
 
-    @Bean(name = "toDo")
-    public TaskList getToDo() {
-        return new TaskList();
-    }
-
-    @Bean(name = "inProgress")
-    public TaskList getInProgress() {
-        return new TaskList();
-    }
-
-    @Bean(name = "done")
-    public TaskList getDone() {
+    public TaskList getTaskList() {
         return new TaskList();
     }
 }

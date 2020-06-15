@@ -19,14 +19,4 @@ public class BoardTestSuite {
         //Then
         board.display();
     }
-
-    @Test
-    public void testExist() {
-        //Given
-        ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring.portfolio");
-        //When
-        boolean listsExist = context.containsBean("toDo") && context.containsBean("inProgress") && context.containsBean("done");
-        //Then
-        System.out.println("All list was created: " + listsExist);
-    }
 }
