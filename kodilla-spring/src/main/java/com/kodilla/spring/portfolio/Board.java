@@ -15,9 +15,11 @@ public class Board {
     public void addTaskToToDoList(String task) {
         toDoList.addTask(task);
     }
+
     public void addTaskToInProgressList(String task) {
         inProgressList.addTask(task);
     }
+
     public void addTaskToDoneList(String task) {
         doneList.addTask(task);
     }
