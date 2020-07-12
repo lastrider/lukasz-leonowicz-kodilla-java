@@ -1,4 +1,4 @@
-package com.kodilla.spring.claculator;
+package com.kodilla.spring.calculator;
 
 import org.springframework.stereotype.Service;
 
