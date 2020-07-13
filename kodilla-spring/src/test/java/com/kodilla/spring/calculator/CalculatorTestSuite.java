@@ -1,6 +1,5 @@
 package com.kodilla.spring.calculator;
 
-import com.kodilla.spring.claculator.Calculator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
