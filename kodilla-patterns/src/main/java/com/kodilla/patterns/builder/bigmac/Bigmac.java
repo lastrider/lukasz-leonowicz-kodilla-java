@@ -1,13 +1,14 @@
 package com.kodilla.patterns.builder.bigmac;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Bigmac {
     private boolean bun;
     private int burgers;
     private String sauce;
-    private List<String> ingredients = new ArrayList<>();
+    private List<String> ingredients;
 
     private Bigmac(boolean bun, int burgers, String sauce, List<String> ingredients) {
         this.bun = bun;
@@ -47,6 +48,8 @@ public class Bigmac {
         private int burgers;
         private String sauce;
         private List<String> ingredients = new ArrayList<>();
+        private String[] list = {"lettuce", "onions", "bacon", "cucumber", "shrimps", "cheese", "mushrooms", "chili peppers"};
+        private List<String> ingredientList = Arrays.asList(list);
 
         public BigmacBuilder bun(boolean bun) {
             this.bun = bun;
@@ -59,7 +62,7 @@ public class Bigmac {
         }
 
         public BigmacBuilder sauce(String sauce) {
-            if (sauce == "standard" || sauce == "1000 islands" || sauce == "barbecue") {
+            if (sauce.equals("standard") || sauce.equals("1000 islands") || sauce.equals("barbecue")) {
                 this.sauce = sauce;
                 return this;
             } else {
@@ -68,9 +71,7 @@ public class Bigmac {
         }
 
         public BigmacBuilder ingredients(String ingredients) {
-            if (ingredients == "lettuce" || ingredients == "onions" || ingredients == "bacon" ||
-                    ingredients == "cucumber" || ingredients == "chili peppers" || ingredients == "mushrooms" ||
-                    ingredients == "shrimps" || ingredients == "cheese") {
+            if (ingredientList.contains(ingredients)) {
                 this.ingredients.add(ingredients);
                 return this;
             } else {

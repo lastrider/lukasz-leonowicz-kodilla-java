@@ -19,6 +19,7 @@ public class BigmacTestSuite {
                     .ingredients("onions")
                     .build();
         } catch (Exception e) {
+
         }
         //When
         int amountIngredients = bigmac.getIngredients().size();
