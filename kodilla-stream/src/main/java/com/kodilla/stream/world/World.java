@@ -1,6 +1,6 @@
 package com.kodilla.stream.world;
 
-import com.kodilla.stream.sand.Europe;
+//import com.kodilla.stream.sand.Europe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
