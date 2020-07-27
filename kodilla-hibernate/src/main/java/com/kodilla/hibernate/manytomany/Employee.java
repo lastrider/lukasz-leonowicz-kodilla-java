@@ -5,6 +5,14 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+
+        @NamedQuery(
+                name = "Employee.retrieveByLastName",
+                query = "From Employee where lastname = :LASTNAME"
+        )
+
+
+
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
@@ -12,7 +20,6 @@ public class Employee {
     private String firstname;
     private String lastname;
     private List<Company> companies =new ArrayList<>();
-
 
     public Employee() {
     }
