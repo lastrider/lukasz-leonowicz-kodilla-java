@@ -1,6 +1,5 @@
 package com.kodilla.patterns2.facade;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class ShopService {
@@ -29,6 +29,7 @@ public class ShopService {
         } else {
             return -1L;
         }
+        //return  1L;
     }
 
     public void addItem(long orderId, Long productId, double qty) {
@@ -41,7 +42,6 @@ public class ShopService {
         Iterator<Order> orderIterator = orders.stream()
                 .filter(order -> order.getOrderId().equals(orderId))
                 .iterator();
-
         while (orderIterator.hasNext()) {
             Order theOrder = orderIterator.next();
             int orderSize = theOrder.getItems().size();
@@ -55,14 +55,71 @@ public class ShopService {
         return false;
     }
 
-    public BigDecimal calculateValue (Long orderId){
+    public BigDecimal calculateValue(Long orderId) {
         Iterator<Order> orderIterator = orders.stream()
-                .filter(order -> order.getItems().equals(orderId))
+                .filter(order -> order.getOrderId().equals(orderId))
+                .iterator();
+        while (orderIterator.hasNext()) {         // po co petla?
+            Order theOrder = orderIterator.next();
+            return theOrder.calculateValue();   // i tak wyjdzie po pierwszej iteracji
+        }
+        return BigDecimal.ZERO;
+    }
+
+    public boolean doPayment(Long orderId) {
+        Iterator<Order> orderIterator = orders.stream()
+                .filter(order -> order.getOrderId().equals(orderId))
                 .iterator();
         while (orderIterator.hasNext()) {
             Order theOrder = orderIterator.next();
-            return theOrder.calculateValue();
+            if (theOrder.isPaid()) {
+                return true;
+            } else {
+                Random generator = new Random();
+                theOrder.setPaid(generator.nextBoolean());
+                return theOrder.isPaid();
+            }
         }
-        return BigDecimal.ZERO;
+        return false;
+    }
+
+    public boolean verifyOrder(Long orderId) {
+        Iterator<Order> orderIterator = orders.stream()
+                .filter(order -> order.getOrderId().equals(orderId))
+                .iterator();
+        while (orderIterator.hasNext()) {
+            Order theOrder = orderIterator.next();
+            boolean result = theOrder.isPaid();
+            Random generator = new Random();
+            if (!theOrder.isVerified()) {
+                theOrder.setVerified(result && generator.nextBoolean());
+            }
+            return theOrder.isVerified();
+        }
+        return false;
+    }
+
+    public boolean submitOrder(Long orderId) {
+        Iterator<Order> orderIterator = orders.stream()
+                .filter(order -> order.getOrderId().equals(orderId))
+                .iterator();
+        while (orderIterator.hasNext()) {
+            Order theOrder = orderIterator.next();
+            if (theOrder.isVerified()) {
+                theOrder.setSubmitted(true);
+            }
+            return theOrder.isSubmitted();
+        }
+        return false;
+    }
+
+    public void cancelOrder(Long orderId) {
+        Iterator<Order> orderIterator = orders.stream()
+                .filter(order -> order.getOrderId().equals(orderId))
+                .iterator();
+        while (orderIterator.hasNext()) {
+            Order theOrder = orderIterator.next();
+            orders.remove(theOrder);
+        }
     }
 }

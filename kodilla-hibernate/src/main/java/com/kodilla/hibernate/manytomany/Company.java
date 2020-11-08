@@ -12,6 +12,11 @@ import java.util.List;
         resultClass = Company.class
 )
 
+@NamedQuery(
+        name = "Company.retrieveCompanyByScrapOfName",
+        query = "From Company where company_name LIKE CONCAT('%',:COMPANY_NAME,'%')"
+)
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
@@ -34,21 +39,21 @@ public class Company {
         return id;
     }
 
+    private void setId(int id) {
+        this.id = id;
+    }
+
     @NotNull
     @Column(name = "COMPANY_NAME")
     public String getName() {
         return name;
     }
 
-    private void setId(int id) {
-        this.id = id;
-    }
-
     private void setName(String name) {
         this.name = name;
     }
 
-    @ManyToMany (cascade = CascadeType.ALL, mappedBy = "companies")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "companies")
     public List<Employee> getEmployees() {
         return employees;
     }

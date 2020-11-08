@@ -2,11 +2,11 @@ package com.kodilla.patterns2.facade;
 
 public class Item {
     private final Long productId;
-    private final double qtt;
+    private final double qty;
 
-    public Item(Long productId, double qtt) {
+    public Item(Long productId, double qty) {
         this.productId = productId;
-        this.qtt = qtt;
+        this.qty = qty;
     }
 
     public Long getProductId() {
@@ -14,7 +14,7 @@ public class Item {
     }
 
     public double getQtt() {
-        return qtt;
+        return qty;
     }
 
 }
