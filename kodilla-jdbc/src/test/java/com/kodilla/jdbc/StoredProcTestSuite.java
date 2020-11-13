@@ -48,6 +48,5 @@ public class StoredProcTestSuite {
         }
         Assert.assertEquals(2, howMany);
     }
-
 }
 
