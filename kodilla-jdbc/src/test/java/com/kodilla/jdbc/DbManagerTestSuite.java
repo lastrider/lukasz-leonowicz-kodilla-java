@@ -28,6 +28,7 @@ public class DbManagerTestSuite {
         String sqlQuery = "SELECT * FROM USERS";
         Statement statement = dbManager.getConnection().createStatement();
         ResultSet rs = statement.executeQuery(sqlQuery);
+        rs.afterLast();
 
         //Then
         int counter = 0;
