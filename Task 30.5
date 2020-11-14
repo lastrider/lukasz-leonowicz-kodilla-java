@@ -1,0 +1,37 @@
+USE kodilla_course;
+SET GLOBAL event_scheduler = ON;
+
+DROP TABLE IF EXISTS stats;
+DROP VIEW IF EXISTS bestsellers_count;
+DROP EVENT IF EXISTS update_stats;
+DROP PROCEDURE IF EXISTS getdata;
+
+
+CREATE TABLE stats
+(
+    stat_id   INT(11) AUTO_INCREMENT PRIMARY KEY,
+    stat_date DATETIME    NOT NULL,
+    stat      VARCHAR(20) NOT NULL,
+    val       INT(11)     NOT NULL
+);
+
+CREATE VIEW bestsellers_count AS
+SELECT SUM(bestseller) AS bestseller
+FROM books;
+
+DELIMITER $$
+
+CREATE PROCEDURE getdata()
+BEGIN
+    DECLARE v INT;
+    CALL updatebestsellers();
+    SELECT sum(bestseller) FROM bestsellers_count INTO v;
+    INSERT INTO stats(stat_date, stat, val)
+        VALUE (curdate(), "BESTSELLERS", v);
+END$$
+DELIMITER ;
+
+
+CREATE EVENT update_stats
+    ON SCHEDULE EVERY 2 SECOND
+    DO CALL getdata();
