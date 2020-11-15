@@ -25,7 +25,7 @@ public class FacadeTestSuite {
 
     @Test
     public void testQueries() {
-    /*    //Given
+        //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
         Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
@@ -53,20 +53,23 @@ public class FacadeTestSuite {
         int dataMaestersId = dataMaesters.getId();
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
-*/
+
         //Then
         Assert.assertEquals(1, searchEngine.searchCompanyName("war").size());
         Assert.assertEquals(0, searchEngine.searchCompanyName("kkk").size());
         Assert.assertEquals(1, searchEngine.searchEmployeeLastname("mit").size());
         Assert.assertEquals(0, searchEngine.searchEmployeeLastname("pacy").size());
 
-/*        //CleanUp
+/*
+        //CleanUp
         try {
             companyDao.deleteById(softwareMachineId);
             companyDao.deleteById(dataMaestersId);
             companyDao.deleteById(greyMatterId);
         } catch (Exception e) {
             //do nothing
+
+
         }*/
     }
 }

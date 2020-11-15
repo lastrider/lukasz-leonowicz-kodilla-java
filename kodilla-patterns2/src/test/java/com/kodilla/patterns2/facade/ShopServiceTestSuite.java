@@ -77,9 +77,6 @@ public class ShopServiceTestSuite {
         } catch (OrderProcessingException e) {
             e.printStackTrace();
                 //business exception - should be handled in real application
-
         }
-
-
     }
 }
