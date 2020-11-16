@@ -76,12 +76,12 @@ public class CrudAppTestSuite {
         driverTrello.get(TRELLO_URL);
 
         driverTrello.findElement(By.xpath("//*[@id=\"user\"]")).sendKeys("l.leonowicz@gmail.com");
-        driverTrello.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("Wptnzs87");
+        driverTrello.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("qwerty123");
         driverTrello.findElement(By.xpath("//*[@id=\"login\"]")).click();
-        Thread.sleep(1000);
-        driverTrello.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("Wptnzs87");
-        driverTrello.findElement(By.xpath("//*[@id=\"login-submit\"]/span/span")).click();
         Thread.sleep(4000);
+        driverTrello.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("qwerty123");
+        driverTrello.findElement(By.xpath("//*[@id=\"login-submit\"]/span/span")).click();
+        Thread.sleep(6000);
         driverTrello.findElements(By.xpath("//a[@class=\"board-tile\"]")).stream()
                 .filter(aHref -> aHref.findElements(By.xpath(".//div[@title=\"Kodilla Application\"]")).size()>0)
                 .forEach(WebElement::click);
@@ -96,17 +96,33 @@ public class CrudAppTestSuite {
         return result;
     }
 
+    private void clean(final String taskName) {
+
+        driver.switchTo().alert().accept();
+
+        while (!driver.findElement(By.xpath("//select[1]")).isDisplayed()) ;
+
+        driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .filter(anyForm ->
+                        anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
+                                .getText().equals(taskName))
+                .forEach(theForm -> {
+                    theForm.findElement(By.xpath(".//button[@data-task-delete-button]")).click();
+                });
+    }
+
     @Test
     public void shouldCreateTrelloCard() throws InterruptedException {
         String taskName = createCrudAppTestTask();
         sendTestTaskToTrello(taskName);
         Assert.assertTrue(checkTaskExistsInTrello(taskName));
+        clean(taskName);
     }
 
 
     @After
     public void cleanUpAfterTest() {
-        //driver.close();
+        driver.close();
     }
 
 
